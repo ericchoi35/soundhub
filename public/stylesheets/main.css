@@ -2,15 +2,22 @@
 	padding: 0;
 	margin: auto;
 }
+#body{
+	background-color: #424242;
+}
 #container{
 	/*width: 960px;*/
-	padding: 40px;
-	background-color: #424242;
+	/*padding: 40px;*/
+	/*background-color: #424242;*/
 	color: white;
 }
 #header{
-	width: auto;
+	/*width: auto;*/
 }
+
+
+
+/*LOGIN AND REGISTRATION*/
 #sign_up{
 	width: 300px;
 	display: inline-block;

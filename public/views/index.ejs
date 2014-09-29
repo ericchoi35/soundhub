@@ -3,6 +3,7 @@
   	<head>
 		<title><%= title %></title>
 		<link rel="stylesheet" type="text/css" href="./../stylesheets/main.css">
+		<link rel="stylesheet" type="text/css" href="./../stylesheets/user.css">
 		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'/>
 		<script type='text/javascript' src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -17,10 +18,155 @@
 			socket.emit('test', { hello: 'world' });
 		</script>
   	</head>
-  	<body>
-		<div id='container' ng-app="MusicApp">
-			<div ng-view=''>	
+  	<body id='body'>
+		<div id='container' ng-app="MusicApp" class='row'>
+			
+			<div id='header' class='row'>
+				<div id='search' class='col-sm-5 col-sm-offset-3'>
+					<input type="search" class="form-control" placeholder="Search">
+				</div>
+				<div id='user' class='col-sm-3 col-sm-offset-1'>
+					<a href='' class='col-sm-3 col-sm-offset-3'>Eduardo</a>
+				</div>
 			</div>
+
+			<div id='nav_bar' class='col-sm-2'>
+				<nav class="navbar navbar-inverse nav-stacked navbar-left col-sm-12" role="navigation">
+				  	<ul class="nav navbar nav-stacked">
+					  	<li>
+					  		<a href="#">Browse Music</a>
+					  	</li>
+					 	<li>
+					 		<a href=''>Play Queue</a>
+					 	</li>
+						<li>
+					 		<a href=''>Following</a>
+					 	</li>
+					</ul>
+					<ul class="nav navbar nav-stacked">
+						<li>Your Music</li>
+					 	<li>
+					 		<a href=''>Songs</a>
+					 	</li>
+					</ul>
+					<ul class="nav navbar nav-stacked">
+						<li>Your Playlists</li>
+						<li><a href=''>playlist1</a></li>
+						<li><a href=''>playlist1</a></li>
+						<li><a href=''>playlist1</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<div id='main_content' class='col-sm-8'>
+				<h1>Your music</h1>
+				<div class='row'>
+					<h3 class="playlist_title">Hip Hop</h3>
+					<div class="col-sm-10 col-sm-offset-1">
+						<table class="table">
+						  	<thead>
+							  	<tr>
+							  		<th>Track</th>
+							  		<th>Artist</th>
+							  		<th>Date Added</th>
+							  	</tr>
+						  	</thead>
+						  	<tbody>
+								<tr>
+									<td>All About You</td>
+									<td>2Pac</td>
+									<td>30-20-2014</td>
+								</tr>
+								<tr>
+									<td>All About You</td>
+									<td>2Pac</td>
+									<td>30-20-2014</td>
+								</tr>
+								<tr>
+									<td>All About You</td>
+									<td>2Pac</td>
+									<td>30-20-2014</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><a href=''>Show More</a></td>
+									<td></td>
+								</tr>
+						  	</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class='row'>
+					<h3 class="playlist_title">Rap</h3>
+					<div class="col-sm-10 col-sm-offset-1">
+						<table class="table">
+						  	<thead>
+							  	<tr>
+							  		<th>Track</th>
+							  		<th>Artist</th>
+							  		<th>Date Added</th>
+							  	</tr>
+						  	</thead>
+						  	<tbody>
+								<tr>
+									<td>All About You</td>
+									<td>2Pac</td>
+									<td>30-20-2014</td>
+								</tr>
+								<tr>
+									<td>All About You</td>
+									<td>2Pac</td>
+									<td>30-20-2014</td>
+								</tr>
+								<tr>
+									<td>All About You</td>
+									<td>2Pac</td>
+									<td>30-20-2014</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><a href=''>Show More</a></td>
+									<td></td>
+								</tr>
+						  	</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div id='follow' class='col-sm-2'>
+				<div class='row'>
+					<div class='col-sm-12'>
+						<h3>Who to follow</h3>
+						<ul>
+							<li>Rory</li>
+							<li>Andrew</li>
+							<li>Eric</li>
+							<li>Ted</li>
+							<li>Young</li>
+							<li>Jeffrey</li>
+							<li>Beryl</li>
+						</ul>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-12'>
+						<h3>What's happening</h3>
+						<p>Eduardo just listened to 'Alphabeat' by Madeon</p>
+					</div>
+				</div>				
+			</div>
+
+			<div class='footer navbar-fixed-bottom'>
+			   <audio controls>
+				  <!-- <source src="horse.ogg" type="audio/ogg"> -->
+				  <source src="Alphabeat - DJ (Madeon Remix).mp3" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</div>		
+			<!-- <div ng-view=''>	
+			</div> -->
 			
 		</div>
   	</body>
