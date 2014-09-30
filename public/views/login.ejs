@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div id='container' ng-app="MusicApp" class='row'>
-			<div ng-controller='User'>
+			<div ng-controller='Login'>
 				<div id='sign_up' class='col-sm-4 col-sm-offset-2'> 
 					<h3>Sign Up</h3>
 						<form role="form">
@@ -69,6 +69,13 @@
 					  	</div>
 				  		<button type="submit" ng-click="loginUser()" class="btn btn-primary">Log In</button>
 					</form>
+					<div ng-repeat="message in messages">
+						<p ng-bind='message.email.message'></p>
+						<p ng-bind='message.password.message'></p>
+						<p ng-bind='message.first_name.message'></p>
+						<p ng-bind='message.last_name.message'></p>
+					</div>
+						<p ng-bind='success'></p>
 				</div>
 			</div>
 		</div>

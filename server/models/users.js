@@ -1,10 +1,15 @@
 var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
-  name:  String,
-  email: String,
-  date: { type: Date, default: Date.now },
-  hidden: Boolean,
+  	first_name:  String,
+  	last_name:  String,
+  	email: String,
+  	password: String,
+  	date: { type: Date, default: Date.now },
+  	hidden: Boolean,
 });
-UserSchema.path('name').required(true, 'User name cannot be blank');
-UserSchema.path('email').required(true, 'User email cannot be blank');
+
+UserSchema.path('first_name').required(true, 'First name field cannot be blank');
+UserSchema.path('last_name').required(true, 'Last name field cannot be blank');
+UserSchema.path('email').required(true, 'Email field cannot be blank');
+UserSchema.path('password').required(true, 'Password field cannot be blank');
 mongoose.model('User', UserSchema);

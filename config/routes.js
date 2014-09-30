@@ -11,39 +11,39 @@ module.exports = function Routes(app, io){
 
     //start of users controller
     //takes use to user home page
-    app.get('/user', function(req,res){
+    app.get('/users', function(req,res){
         req.session.page = 'index';
         console.log('request', req.session);
         users.index(req,res)
     });
 
     //register a new user
-    app.post('/user/create', function (req,res){
+    app.post('/users/create', function (req,res){
         console.log('REQUEST', req.session);
-        users.index(req,res)
+        users.create(req,res)
     });
 
     //user first login
-    app.get('/users/index.json',function (req,res){
+    app.post('/users/index.json',function (req,res){
         users.index_json(req,res)
     });
 
-    
-    app.get('/users/new', function (req,res){
-        users.new(req,res)
-    });
-    app.post('/users/create', function (req,res){
-        users.create(req,res)
-    });
-    app.get('/users/:id', function (req,res){
-        users.show(req,res)
-    });
-    app.get('/users/:id/edit', function (req,res){
-        users.edit(req,res)
-    });
-    app.post('/users/newUser_json', function (req,res){
-        users.newUser_json(req,res)
-    });
+
+    // app.get('/users/new', function (req,res){
+    //     users.new(req,res)
+    // });
+    // app.post('/users/create', function (req,res){
+    //     users.create(req,res)
+    // });
+    // app.get('/users/:id', function (req,res){
+    //     users.show(req,res)
+    // });
+    // app.get('/users/:id/edit', function (req,res){
+    //     users.edit(req,res)
+    // });
+    // app.post('/users/newUser_json', function (req,res){
+    //     users.newUser_json(req,res)
+    // });
     io.sockets.on('connection', function (socket){
         console.log('A new user connected!');
         socket.emit('info', {msg: 'The world is round, there is no up or down.'}); //sending a message to just that person

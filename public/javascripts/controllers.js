@@ -1,13 +1,29 @@
-MusicApp.controller('User', function($scope, $window, SoundFactory){
+MusicApp.controller('Login', function($scope, $window, SoundFactory){
 	$scope.registerUser = function(){
-		SoundFactory.addNewUser($scope.register);
-		// $window.location.href = 'http://localhost:3000/index';
+		SoundFactory.addNewUser($scope.register, function(data){
+			if(typeof(data) == 'object'){
+				$scope.success = null;
+				$scope.messages = data;
+			} else {
+				$scope.messages = null;
+				$scope.success = data;
+			}
+		});
 	}
 
 	$scope.loginUser = function(){
-		SoundFactory.getUser($scope.login, $window);
+		SoundFactory.getUser($scope.login, function(data){
+			// $scope.data = data;
+			var login_information = data;
+			console.log('data from callback', data);
+			console.log('login_information', login_information);
+			// console.log($scope.data);
+		});
 	}
 
+MusicApp.controller('User', function($scope,SoundFactory){
+	$scope.session = SoundFactory.getSsession();
+})	
 	//get all playlist
 		//get all songs for each playlist -- limit first 5 songs
 

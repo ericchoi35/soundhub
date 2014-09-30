@@ -23,6 +23,8 @@
   	</head>
   	<body id='body'>
 		<div id='container' ng-app="MusicApp" class='row'>
+			<div ng-controller='User'>
+
 			<div id='header' class='row'>
 				<div id='logo' class='col-sm-3'>
 					<img src="./../images/logo.png" alt="logo">
@@ -35,12 +37,16 @@
 					<a href='#/'>Eduardo</a>
 					<span class="user_icon glyphicon glyphicon-cloud"></span>
 					<div id='log_out' class='pull-right'>
-					<a href='/'>Log Out</a>
-					<span class="logout_icon glyphicon glyphicon-off"></span>
+						<a href='/'>Log Out</a>
+						<span class="logout_icon glyphicon glyphicon-off"></span>
+					</div>
 				</div>
-				</div>
-				
 			</div>
+				
+			<p ng-bind='session'></p>
+			</div>	
+		
+		
 
 			<div id='nav_bar' class='col-sm-2'>
 				<nav class="navbar navbar-inverse nav-stacked navbar-left col-sm-12" role="navigation">
@@ -145,8 +151,7 @@
 				  <source src="./../music_files/Alphabeat - DJ (Madeon Remix).mp3" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
-			</div>		
-			
+			</div>			
 		</div>
   	</body>
 </html>
