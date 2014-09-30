@@ -35,7 +35,8 @@
 		color: white;
 	}
 #log_out{
-	margin-left: 100px;
+	margin-top: 10px;
+	margin-right: 10px;
 	display: inline-block;
 }
 #log_out a{
