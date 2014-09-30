@@ -1,11 +1,12 @@
 var users = require('./../server/controllers/users.js');
+var logins = require('./../server/controllers/logins.js');
 module.exports = function Routes(app, io){
     app.get('/', function(req,res){
         req.session.page = 'index';
         console.log('request', req.session);
-        users.index(req,res)
+        logins.index(req,res)
     });
- 	app.get('/users', function (req,res){
+ 	app.get('/user', function (req,res){
         req.session.name = 'mike';
         console.log('REQUEST', req.session);
         users.index(req,res)

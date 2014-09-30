@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="./../stylesheets/login.css">
+		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'/>
+		<script type='text/javascript' src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js'/></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js'/></script>
+		<script src='./../javascripts/app.js'/></script>
+		<script type="text/javascript">
+			var socket = io.connect();
+			socket.on('info', function(msg){
+			 console.log('received info event and got the following message', msg);
+			});
+			socket.emit('test', { hello: 'world' });
+		</script>
+  	</head>
+  	<body id='body'>
+  		<div class='row'>
+			<div class="jumbotron col-sm-8 col-sm-offset-2">
+			  	<h1>Welcome to SoundHub</h1>
+			  	<p>SoundHub is a free to use application where anyone can make a playlist of their favorite sounds!</p>
+			</div>
+		</div>
+		<div id='container' class='row'>
+			<div id='sign_up' class='col-sm-4 col-sm-offset-2'> 
+				<h3>Sign Up</h3>
+					<form role="form">
+					<div class="form-group">
+						<label for="exampleInputEmail1">First Name</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter first name">
+		  			</div>
+		  	
+		  			<div class="form-group">
+						<label for="exampleInputEmail1">Last Name</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter last name">
+		  			</div>
+		  	
+		  			<div class="form-group">
+						<label for="exampleInputEmail1">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+		  			</div>
+		 	
+		 			<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+		  			</div>
+	  				<button type="submit" class="btn btn-primary">Sign Up</button>
+				</form>
+			</div>
+
+			<div id='login' class='col-sm-4'>
+				<h3>Login</h3>
+				<form role="form">
+				  	<div class="form-group">
+						<label for="exampleInputEmail1">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+				  	</div>
+
+				 	<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+				  	</div>
+			  		<button type="submit" class="btn btn-primary"><a href='/user'>Log In</a></button>
+				</form>
+			</div>
+		</div>
+  	</body>
+</html>
