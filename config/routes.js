@@ -1,19 +1,34 @@
 var users = require('./../server/controllers/users.js');
 var logins = require('./../server/controllers/logins.js');
 module.exports = function Routes(app, io){
+
+    //takes us to login/registration page
     app.get('/', function(req,res){
         req.session.page = 'index';
         console.log('request', req.session);
         logins.index(req,res)
     });
- 	app.get('/user', function (req,res){
-        req.session.name = 'mike';
+
+    //start of users controller
+    //takes use to user home page
+    app.get('/user', function(req,res){
+        req.session.page = 'index';
+        console.log('request', req.session);
+        users.index(req,res)
+    });
+
+    //register a new user
+    app.post('/user/create', function (req,res){
         console.log('REQUEST', req.session);
         users.index(req,res)
     });
+
+    //user first login
     app.get('/users/index.json',function (req,res){
         users.index_json(req,res)
     });
+
+    
     app.get('/users/new', function (req,res){
         users.new(req,res)
     });

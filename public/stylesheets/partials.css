@@ -1,6 +1,10 @@
+/*USER PARTIAL*/
 .playlist_title {
 	margin-left: 50px;
 }
+/*.show_more{
+	text-align: center;
+}*/
 
 /*BROWSE PARTIAL*/
 .playlist_select {
@@ -28,4 +32,10 @@
 .trash_icon{
 	font-size: 1.3em;
 	color: white;
+}
+
+/*FOLLOW PARTIAL*/
+.view_page{
+	color: white;
+	margin-right: 10px;
 }

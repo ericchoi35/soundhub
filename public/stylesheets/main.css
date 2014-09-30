@@ -6,15 +6,10 @@
 	background-color: #424242;
 }
 #container{
-	/*width: 960px;*/
-	/*padding: 40px;*/
-	/*background-color: #424242;*/
 	color: white;
 }
 #header{
 	padding: 20px;
-	/*padding-top: 20px;
-	padding-left: 20px;*/
 }
 #search input{
 	margin-top: 15px;
@@ -35,11 +30,15 @@
 		color: white;
 	}
 #log_out{
-	margin-left: 100px;
+	margin-right: 10px;
+	margin-top: 10px;
 	display: inline-block;
 }
 #log_out a{
-	font-size: 1em;
+	font-size: 1.3em;
+}
+#log_out span{
+	font-size: 1.2em;
 }
 .user_icon{
 	font-size: 1.8em;

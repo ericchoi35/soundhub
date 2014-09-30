@@ -5,11 +5,14 @@
 		<link rel="stylesheet" type="text/css" href="./../stylesheets/main.css">
 		<link rel="stylesheet" type="text/css" href="./../stylesheets/partials.css">
 		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type='text/javascript' src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js'/></script>
 		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js'/></script>
 		<script src='./../javascripts/app.js'/></script>
+		<script src='./../javascripts/controllers.js'/></script>
+		<script src='./../javascripts/factories.js'/></script>
 		<script type="text/javascript">
 			var socket = io.connect();
 			socket.on('info', function(msg){
@@ -20,7 +23,6 @@
   	</head>
   	<body id='body'>
 		<div id='container' ng-app="MusicApp" class='row'>
-			
 			<div id='header' class='row'>
 				<div id='logo' class='col-sm-3'>
 					<img src="./../images/logo.png" alt="logo">
@@ -32,10 +34,12 @@
 				<div id='user' class='col-sm-3 col-sm-offset-1'>
 					<a href='#/'>Eduardo</a>
 					<span class="user_icon glyphicon glyphicon-cloud"></span>
-					<div id='log_out'>
-						<a href='/'><span class="user_icon glyphicon glyphicon-off"></span></a>
-					</div>
+					<div id='log_out' class='pull-right'>
+					<a href='/'>Log Out</a>
+					<span class="logout_icon glyphicon glyphicon-off"></span>
 				</div>
+				</div>
+				
 			</div>
 
 			<div id='nav_bar' class='col-sm-2'>
@@ -72,7 +76,7 @@
 					</div>
 					<div id='create' class="input-group input-group-sm">
 					  	<input type="text" class="form-control" placeholder="Playlist name">
-					  	<button ng-click='' class='btn-xs btn-primary'>Add playlist</button>
+					  	<button ng-click='' class='btn btn-xs btn-primary'>Add playlist</button>
 					</div>
 					
 				</nav>
@@ -90,35 +94,35 @@
 							<ul class='follow_name'>
 								<li>
 									<label>Rory</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 								<li>
 									<label>Eric</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 								<li>
 									<label>Andrew</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 								<li>
 									<label>Michael</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 								<li>
 									<label>Adam</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 								<li>
 									<label>Evan</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 								<li>
 									<label>Evan</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 								<li>
 									<label>Evan</label>
-									<button ng-click='' class="btn-xs btn-primary">Follow</button>
+									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 
 							</ul>
