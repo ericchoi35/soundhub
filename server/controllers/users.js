@@ -37,7 +37,7 @@ module.exports = {
                 req.session.session_id = req.sessionID;
                 req.session.name = results[0].first_name;
                 req.session.user_id = results[0]._id;
-                // res.send(JSON.stringify(results));
+                res.send(JSON.stringify(results));
             }
             else{
                 console.log('ERROR');
