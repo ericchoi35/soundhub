@@ -1,34 +1,49 @@
 var users = require('./../server/controllers/users.js');
 var logins = require('./../server/controllers/logins.js');
 module.exports = function Routes(app, io){
+
+    //takes us to login/registration page
     app.get('/', function(req,res){
         req.session.page = 'index';
         console.log('request', req.session);
         logins.index(req,res)
     });
- 	app.get('/user', function (req,res){
-        req.session.name = 'mike';
-        console.log('REQUEST', req.session);
+
+    //start of users controller
+    //takes use to user home page
+    app.get('/users', function(req,res){
+        req.session.page = 'index';
+        console.log('request', req.session);
         users.index(req,res)
     });
-    app.get('/users/index.json',function (req,res){
-        users.index_json(req,res)
-    });
-    app.get('/users/new', function (req,res){
-        users.new(req,res)
-    });
+
+    //register a new user
     app.post('/users/create', function (req,res){
+        console.log('REQUEST', req.session);
         users.create(req,res)
     });
-    app.get('/users/:id', function (req,res){
-        users.show(req,res)
+
+    //user first login
+    app.post('/users/index.json',function (req,res){
+        users.index_json(req,res)
     });
-    app.get('/users/:id/edit', function (req,res){
-        users.edit(req,res)
-    });
-    app.post('/users/newUser_json', function (req,res){
-        users.newUser_json(req,res)
-    });
+
+
+    // app.get('/users/new', function (req,res){
+    //     users.new(req,res)
+    // });
+    // app.post('/users/create', function (req,res){
+    //     users.create(req,res)
+    // });
+    // app.get('/users/:id', function (req,res){
+    //     users.show(req,res)
+    // });
+    // app.get('/users/:id/edit', function (req,res){
+    //     users.edit(req,res)
+    // });
+    // app.post('/users/newUser_json', function (req,res){
+    //     users.newUser_json(req,res)
+    // });
     io.sockets.on('connection', function (socket){
         console.log('A new user connected!');
         socket.emit('info', {msg: 'The world is round, there is no up or down.'}); //sending a message to just that person

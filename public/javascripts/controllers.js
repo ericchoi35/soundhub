@@ -1,4 +1,29 @@
-MusicApp.controller('User', function($scope, MusicFactory){
+MusicApp.controller('Login', function($scope, $window, SoundFactory){
+	$scope.registerUser = function(){
+		SoundFactory.addNewUser($scope.register, function(data){
+			if(typeof(data) == 'object'){
+				$scope.success = null;
+				$scope.messages = data;
+			} else {
+				$scope.messages = null;
+				$scope.success = data;
+			}
+		});
+	}
+
+	$scope.loginUser = function(){
+		SoundFactory.getUser($scope.login, function(data){
+			// $scope.data = data;
+			var login_information = data;
+			console.log('data from callback', data);
+			console.log('login_information', login_information);
+			// console.log($scope.data);
+		});
+	}
+
+MusicApp.controller('User', function($scope,SoundFactory){
+	$scope.session = SoundFactory.getSsession();
+})	
 	//get all playlist
 		//get all songs for each playlist -- limit first 5 songs
 
@@ -20,7 +45,7 @@ MusicApp.controller('User', function($scope, MusicFactory){
 	// }
 })
 
-MusicApp.controller('Browse', function($scope, MusicFactory){
+MusicApp.controller('Browse', function($scope, SoundFactory){
 	//get all songs in database
 		//list all songs
 
@@ -29,13 +54,13 @@ MusicApp.controller('Browse', function($scope, MusicFactory){
 })	
 
 
-MusicApp.controller('Playlist', function($scope, MusicFactory){
+MusicApp.controller('Playlist', function($scope, SoundFactory){
 	//get all songs for specific playlist by using hidden ID
 		//list all songs
 
 })
 
-MusicApp.controller('Follow', function($scope, MusicFactory){
+MusicApp.controller('Follow', function($scope, SoundFactory){
 	//get all users AND their ID's the logged in user is following
 
 	//add function to unfollow user 

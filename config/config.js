@@ -13,20 +13,20 @@ var path = require('path')
     }
 module.exports = {
     development: {
-        db: 'mongodb://localhost/test',
+        db: 'mongodb://localhost/soundhub',
         root: rootPath,
         notifier: notifier,
         app: {
-          name: 'Nodejs Express Mongoose Demo'
+          name: 'SoundHub Nodejs Express Mongoose'
         }
     },
-    test: {
-        db: 'mongodb://localhost/noobjs_test',
-        root: rootPath,
-        notifier: notifier,
-        app: {
-            name: 'Nodejs Express Mongoose Demo'
-        }
-    },
+    // test: {
+    //     db: 'mongodb://localhost/noobjs_test',
+    //     root: rootPath,
+    //     notifier: notifier,
+    //     app: {
+    //         name: 'Nodejs Express Mongoose Demo'
+    //     }
+    // },
     production: {}
 }
