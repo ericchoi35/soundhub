@@ -1,7 +1,5 @@
 MusicApp.factory('SoundFactory', function($http, $window){
-
 	var user = {};
-
 	var factory = {};
 
 	factory.addNewUser = function(info, callback){ //for adding user
@@ -18,7 +16,6 @@ MusicApp.factory('SoundFactory', function($http, $window){
 		console.log(info);
 
 		$http.post('/users/index.json', info).success(function(data){
-			console.log('hello');
 			$window.location.href = 'http://localhost:3000/users';
     	});
 	}

@@ -37,7 +37,6 @@ module.exports = {
                 req.session.session_id = req.sessionID;
                 req.session.name = results[0].first_name;
                 req.session.user_id = results[0]._id;
-                res.send(JSON.stringify(results));
             }
             else{
                 console.log('ERROR');
@@ -49,15 +48,14 @@ module.exports = {
     session_json: function(req, res){
         if(req.sessionID == req.session.session_id){
             res.send(req.session);
-        } else{
+        } else {
             res.redirect('/');
         }
+    },
+    show: function(req, res){
+        res.render('./../server/views/users/show', {title:'Welcome Page'});
+    },
+    edit: function(req, res){
+        res.render('./../server/views/users/edit', {title:'Welcome Page'});
     }
-
-    // show: function(req, res){
-    //     res.render('./../server/views/users/show', {title:'Welcome Page'});
-    // },
-    // edit: function(req, res){
-    //     res.render('./../server/views/users/edit', {title:'Welcome Page'});
-    // }
 }

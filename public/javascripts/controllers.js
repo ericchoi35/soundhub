@@ -16,7 +16,7 @@ MusicApp.controller('Login', function($scope, $window, SoundFactory){
 	}
 })
 
-MusicApp.controller('User', function($scope,SoundFactory){	
+MusicApp.controller('User', function($scope,SoundFactory){
 	SoundFactory.getSession(function(data){
 		$scope.session = data;
 		console.log($scope.session);
@@ -41,6 +41,7 @@ MusicApp.controller('User', function($scope,SoundFactory){
 	// $scope.removeCustomer = function(id,index){
 	// 	StoreFactory.deleteCustomer(id,index);
 	// }
+
 
 MusicApp.controller('Browse', function($scope, SoundFactory){
 	//get all songs in database

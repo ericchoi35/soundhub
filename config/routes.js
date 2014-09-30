@@ -1,7 +1,6 @@
 var users = require('./../server/controllers/users.js');
 var logins = require('./../server/controllers/logins.js');
 module.exports = function Routes(app, io){
-
     //takes us to login/registration page
     app.get('/', function(req,res){
         req.session.page = 'index';
@@ -23,6 +22,10 @@ module.exports = function Routes(app, io){
         users.create(req,res)
     });
 
+    // get session data
+    app.get('/users/session.json', function (req,res){
+        users.session_json(req,res);
+    })
     //user first login
     app.post('/users/index.json',function (req,res){
         users.index_json(req,res)
