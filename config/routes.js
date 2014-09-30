@@ -10,7 +10,7 @@ module.exports = function Routes(app, io){
     });
 
     //start of users controller
-    //takes use to user home page
+    //takes user to user home page
     app.get('/users', function(req,res){
         req.session.page = 'index';
         console.log('request', req.session);
@@ -28,7 +28,9 @@ module.exports = function Routes(app, io){
         users.index_json(req,res)
     });
 
-
+    app.get('/users/session.json', function (req,res){
+        users.session_json(req,res)
+    })
     // app.get('/users/new', function (req,res){
     //     users.new(req,res)
     // });
