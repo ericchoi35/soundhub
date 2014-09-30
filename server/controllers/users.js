@@ -35,15 +35,22 @@ module.exports = {
             // console.log("RESULTS.PASSWORD", results[0].password);
             if(req.body.password == results[0].password){
                 req.session.session_id = req.sessionID;
-                // res.redirect('/users', {session_id: req.sessionID});
-                // console.log('hello');
-                res.send(JSON.stringify(results));
+                req.session.name = results[0].first_name;
+                req.session.user_id = results[0]._id;
             }
             else{
                 console.log('ERROR');
                 res.send(JSON.stringify(err));
             } 
         });
+    },
+
+    session_json: function(req, res){
+        if (req.sessionID == req.session.session_id){
+            res.send(req.session);
+        } else {
+            res.redirect('/');
+        }
     },
     show: function(req, res){
         res.render('./../server/views/users/show', {title:'Welcome Page'});

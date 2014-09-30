@@ -12,17 +12,15 @@ MusicApp.controller('Login', function($scope, $window, SoundFactory){
 	}
 
 	$scope.loginUser = function(){
-		SoundFactory.getUser($scope.login, function(data){
-			// $scope.data = data;
-			var login_information = data;
-			console.log('data from callback', data);
-			console.log('login_information', login_information);
-			// console.log($scope.data);
-		});
+		SoundFactory.getUser($scope.login);
 	}
+})
 
 MusicApp.controller('User', function($scope,SoundFactory){
-	$scope.session = SoundFactory.getSsession();
+	SoundFactory.getSession(function(data){
+		$scope.session = data;
+		console.log($scope.session);
+	});
 })	
 	//get all playlist
 		//get all songs for each playlist -- limit first 5 songs
@@ -43,7 +41,7 @@ MusicApp.controller('User', function($scope,SoundFactory){
 	// $scope.removeCustomer = function(id,index){
 	// 	StoreFactory.deleteCustomer(id,index);
 	// }
-})
+
 
 MusicApp.controller('Browse', function($scope, SoundFactory){
 	//get all songs in database
