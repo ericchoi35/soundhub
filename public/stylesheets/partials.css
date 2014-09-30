@@ -16,3 +16,16 @@
 	border: 0;
 	height: 34;
 }
+.play_icon{
+	margin-right: 10px;
+}
+.add_icon{
+	font-size: 1.3em;
+	color: #1E90FF;
+}
+
+/*PLAYLIST PARTIAL*/
+.trash_icon{
+	font-size: 1.3em;
+	color: white;
+}

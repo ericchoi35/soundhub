@@ -34,7 +34,13 @@
 		font-size: 2em;
 		color: white;
 	}
-
+#log_out{
+	margin-left: 100px;
+	display: inline-block;
+}
+#log_out a{
+	font-size: 1em;
+}
 .user_icon{
 	font-size: 1.8em;
 }
@@ -45,9 +51,7 @@
 .icon{
 	margin-left: 10px;
 }
-.play{
-	margin-right: 10px;
-}
+
 /*#header{
 	width: auto;
 }*/
