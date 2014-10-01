@@ -17,11 +17,22 @@ MusicApp.controller('Login', function($scope, $window, SoundFactory){
 })
 
 MusicApp.controller('User', function($scope,SoundFactory){
-	SoundFactory.getSession(function(data){
-		$scope.session = data;
-		console.log($scope.session);
+	SoundFactory.getUserData(function(data){
+		$scope.user = data;
+		console.log('$scope.user', $scope.user);
 	});
+
+	SoundFactory.getAllUsers(function(data){
+		$scope.allUsers = data;
+		console.log('$scope.allusers', $scope.allUsers);
+	});
+
+	$scope.createPlaylist = function(){
+		SoundFactory.addPlaylist(info);
+	}
 })	
+
+
 	//get all playlist
 		//get all songs for each playlist -- limit first 5 songs
 

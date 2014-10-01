@@ -1,5 +1,7 @@
 MusicApp.factory('SoundFactory', function($http, $window){
 	var user = {};
+	var users = {};
+	var playlists = {};
 	var factory = {};
 
 	factory.addNewUser = function(info, callback){ //for adding user
@@ -16,14 +18,30 @@ MusicApp.factory('SoundFactory', function($http, $window){
 		console.log(info);
 
 		$http.post('/users/index.json', info).success(function(data){
+			console.log(data);
 			$window.location.href = 'http://localhost:3000/users';
     	});
 	}
 
-	factory.getSession = function(callback){
-		$http.get('/users/session.json').success(function(data){
+	factory.getUserData = function(callback){
+		$http.get('/users/user.json').success(function(data){
 			callback(data);
+			user = data;
 		});
+	}
+
+	factory.getAllUsers = function(callback){
+		$http.get('/users/allUsers.json').success(function(data){
+			callback(data);
+			users = data;
+			console.log(users);
+		})
+	}
+
+	factory.addPlaylist = function(info){
+		$http.post('/playlist/create').success(function(data){
+
+		})
 	}
 	return factory;
 });

@@ -4,7 +4,6 @@ module.exports = function Routes(app, io){
     //takes us to login/registration page
     app.get('/', function(req,res){
         req.session.page = 'index';
-        console.log('request', req.session);
         logins.index(req,res)
     });
 
@@ -12,31 +11,28 @@ module.exports = function Routes(app, io){
     //takes user to user home page
     app.get('/users', function(req,res){
         req.session.page = 'index';
-        console.log('request', req.session);
         users.index(req,res)
     });
 
     //register a new user
     app.post('/users/create', function (req,res){
-        console.log('REQUEST', req.session);
         users.create(req,res)
     });
 
-    // get session data
-    app.get('/users/session.json', function (req,res){
-        users.session_json(req,res);
-    })
     //user first login
     app.post('/users/index.json',function (req,res){
         users.index_json(req,res)
     });
 
-    app.get('/users/session.json', function (req,res){
-        users.session_json(req,res)
+    //get current users data
+    app.get('/users/user.json', function (req,res){
+        users.user_json(req,res)
     })
-    // app.get('/users/new', function (req,res){
-    //     users.new(req,res)
-    // });
+
+    //get all users
+    app.get('/users/allUsers.json', function (req,res){
+        users.allUsers_json(req,res)
+    });
     // app.post('/users/create', function (req,res){
     //     users.create(req,res)
     // });
