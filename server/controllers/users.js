@@ -25,10 +25,8 @@ module.exports = {
     },
 
     //to have user login
-    index_json: function(req, res){ 
-        
+    index_json: function(req, res){      
         User.find({email: req.body.email, password: req.body.password}, function(err, results){
- 
             if(results.length>0)
             {
                 req.session.session_id = req.sessionID;
@@ -57,6 +55,12 @@ module.exports = {
     allUsers_json: function(req, res){
         User.find({}, function(err, results){
             res.send(JSON.stringify(results));
+        });
+    },
+
+    test: function(req, res){
+        User.find({}, function(err, results){
+            res.send(results);
         });
     },
     // show: function(req, res){

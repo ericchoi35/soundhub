@@ -63,18 +63,14 @@
 					</ul>
 					<h5>Your Playlists<span class="icon glyphicon glyphicon-th-list"></span></h5>
 					<div id='playlist'>
-						<ul class="nav navbar nav-stacked">
-							<li><a href='#/playlist'>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
+						<ul class="nav navbar nav-stacked" ng-repeat="playlist in playlists">
+							<li>
+								<a ng-bind='playlist.playlist_name' ng-click="showPlaylist($index)"></a>
+							</li>
 						</ul>
 					</div>
 					<div id='create' class="input-group input-group-sm">
-					  	<input type="text" class="form-control" placeholder="Playlist name">
+					  	<input type="text" class="form-control" placeholder="Playlist name" ng-model='playlist_name'>
 					  	<button ng-click='createPlaylist()' class='btn btn-xs btn-primary'>Add playlist</button>
 					</div>
 					
@@ -89,7 +85,7 @@
 					<div class='col-sm-12'>
 						<h3>Who to follow</h3>
 						<div id='follow_list'>
-							<ul class='follow_name' ng-repeat="user in allUsers">
+							<ul class='follow_name' ng-repeat="user in users">
 								<li>
 									<label ng-bind="user.first_name"></label>
 									<a href='/' ng-click='follow(user._id)'><span class="follow_icon glyphicon glyphicon-transfer"></span></a>

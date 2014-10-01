@@ -47,6 +47,9 @@
 	height: 200px;
 	overflow: auto;
 }
+#playlist ul{
+	margin-bottom: 0;
+}
 .icon{
 	margin-left: 10px;
 }

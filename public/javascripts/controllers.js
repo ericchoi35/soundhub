@@ -16,20 +16,28 @@ MusicApp.controller('Login', function($scope, $window, SoundFactory){
 	}
 })
 
-MusicApp.controller('User', function($scope,SoundFactory){
+MusicApp.controller('User', function($scope, SoundFactory){
 	SoundFactory.getUserData(function(data){
 		$scope.user = data;
 		console.log('$scope.user', $scope.user);
 	});
 
 	SoundFactory.getAllUsers(function(data){
-		$scope.allUsers = data;
-		console.log('$scope.allusers', $scope.allUsers);
+		$scope.users = data;
+		console.log('$scope.allusers', $scope.users);
+	});
+
+	SoundFactory.getAllPlaylists(function(data){
+		$scope.playlists = data;
+		console.log('$scope.playlists,', $scope.playlists);
 	});
 
 	$scope.createPlaylist = function(){
-		SoundFactory.addPlaylist(info);
+		SoundFactory.addPlaylist($scope.playlist_name);
+		// SoundFactory.addPlaylist($scope.playlist_name);
 	}
+
+
 })	
 
 
