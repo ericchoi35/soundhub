@@ -1,43 +1,61 @@
 var users = require('./../server/controllers/users.js');
 var logins = require('./../server/controllers/logins.js');
+var playlist = require('./../server/controllers/playlist.js');
 module.exports = function Routes(app, io){
     //takes us to login/registration page
     app.get('/', function(req,res){
         req.session.page = 'index';
-        console.log('request', req.session);
         logins.index(req,res)
     });
 
     //start of users controller
-    //takes use to user home page
+    //takes user to user home page
     app.get('/users', function(req,res){
         req.session.page = 'index';
-        console.log('request', req.session);
         users.index(req,res)
     });
 
     //register a new user
     app.post('/users/create', function (req,res){
-        console.log('REQUEST', req.session);
         users.create(req,res)
     });
 
-    // get session data
-    app.get('/users/session.json', function (req,res){
-        users.session_json(req,res);
-    })
     //user first login
     app.post('/users/index.json',function (req,res){
         users.index_json(req,res)
     });
 
+    //get current users data
+    app.get('/users/user.json', function (req,res){
+        users.user_json(req,res)
+    })
 
-    // app.get('/users/new', function (req,res){
-    //     users.new(req,res)
-    // });
-    // app.post('/users/create', function (req,res){
-    //     users.create(req,res)
-    // });
+    //get all users
+    app.get('/users/allUsers.json', function (req,res){
+        users.allUsers_json(req,res)
+    });
+
+    // start of playlist controller
+    // create playlist
+    app.post('/playlist/create', function (req,res){
+        playlist.create(req,res)
+    });
+
+    app.get('/playlist/save_playlist', function (req,res){
+        playlist.save_playlist(req,res)
+    });
+
+    app.get('/playlist/get_playlist', function (req,res){
+        playlist.get_playlist(req,res)
+    })
+
+    app.get('/playlist/allPlaylists', function (req,res){
+        playlist.allPlaylists_json(req,res)
+    });
+
+    app.get('/test', function (req,res){
+        users.test(req,res)
+    });
     // app.get('/users/:id', function (req,res){
     //     users.show(req,res)
     // });

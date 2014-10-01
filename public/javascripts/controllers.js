@@ -16,12 +16,51 @@ MusicApp.controller('Login', function($scope, $window, SoundFactory){
 	}
 })
 
-MusicApp.controller('User', function($scope,SoundFactory){
-	SoundFactory.getSession(function(data){
-		$scope.session = data;
-		console.log($scope.session);
+MusicApp.controller('User', function($scope, $window, SoundFactory){
+	SoundFactory.getUserData(function(data){
+		$scope.user = data;
+		console.log('$scope.user', $scope.user);
 	});
+
+	SoundFactory.getAllUsers(function(data){
+		$scope.users = data;
+		console.log('$scope.allusers', $scope.users);
+	});
+
+	SoundFactory.getAllPlaylists(function(data){
+		$scope.playlists = data;
+		console.log('$scope.playlists,', $scope.playlists);
+	});
+
+	$scope.createPlaylist = function(){
+		SoundFactory.addPlaylist($scope.playlist_name);
+	}
+	$scope.showPlaylist = function(index){
+		SoundFactory.getPlaylist(index, function(data){
+			$scope.user_playlist = data;
+			console.log('user_playlist', $scope.user_playlist)
+		});
+	}
+
+	$scope.showCurrentPlaylist = function(){
+		SoundFactory.getCurrentPlaylist(function(data){
+			$scope.user_playlist = data;
+		})
+	}
+
 })	
+
+MusicApp.controller('Playlist', function($scope, SoundFactory){
+	//get all songs for specific playlist by using hidden ID
+		//list all songs
+
+	// $scope.showPlaylist = function(index){
+	// 	SoundFactory.getPlaylist(index, function(data){
+	// 		$user_playlist = data;
+	// 	});
+	// }
+
+})
 	//get all playlist
 		//get all songs for each playlist -- limit first 5 songs
 
@@ -52,11 +91,7 @@ MusicApp.controller('Browse', function($scope, SoundFactory){
 })	
 
 
-MusicApp.controller('Playlist', function($scope, SoundFactory){
-	//get all songs for specific playlist by using hidden ID
-		//list all songs
 
-})
 
 MusicApp.controller('Follow', function($scope, SoundFactory){
 	//get all users AND their ID's the logged in user is following

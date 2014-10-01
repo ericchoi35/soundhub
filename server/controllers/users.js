@@ -3,60 +3,70 @@ var User = mongoose.model('User');
 
 module.exports = {
     index: function(req, res){
-      res.render('./../public/views/index', {title:'SoundHub'});
+        if(req.sessionID == req.session.session_id){
+            res.render('./../public/views/index', {title:'SoundHub'});
+        } else{
+            res.render('./../public/views/login', {title:'SoundHub'});
+        }
     },
- // index: function(req, res){
- //  res.render('./../public/views/index', {title:'Welcome Page'});
- // },
 
+    //register user
     create: function(req, res){
         var a = new User(req.body);
         a.save(function(err){
-           if(err){
-            res.send(JSON.stringify(err));
-           }
-           else
-           {
-            res.send('You have successfully registered!');
-           }
+            if(err){
+                res.send(JSON.stringify(err));
+            }
+            else
+            {
+                res.send('You have successfully registered!');
+            }
         });
     },
 
-    index_json: function(req, res){ 
-        console.log('REQ.BODY', req.body);
-        // console.log('REQ', req);
-        console.log('REQ.sessionID', req.sessionID);
-        console.log('REQ.session', req.session);
-        
-        User.find({email: req.body.email}, function(err, results){
-            // console.log('RESULTS', results);
-            // console.log("DOES REQ COME HERE", req.body);
-            // console.log("REQ.BODY.PASSWORD", req.body.password);
-            // console.log("RESULTS.PASSWORD", results[0].password);
-            if(req.body.password == results[0].password){
+    //to have user login
+    index_json: function(req, res){      
+        User.find({email: req.body.email, password: req.body.password}, function(err, results){
+            if(results.length>0)
+            {
                 req.session.session_id = req.sessionID;
                 req.session.name = results[0].first_name;
                 req.session.user_id = results[0]._id;
+                console.log('INDEX - REQ.SESSION', req.session);
                 res.send(JSON.stringify(results));
             }
-            else{
+            else
+            {
                 console.log('ERROR');
                 res.send(JSON.stringify(err));
-            } 
+            }
+        })
+       
+    },
+
+    //grab user data once logged in
+    user_json: function(req, res){
+        console.log("SESSION - req.session", req.session);
+        User.find({_id: req.session.user_id}, function(err, results){
+            res.send(JSON.stringify(results));
         });
     },
 
-    session_json: function(req, res){
-        if (req.sessionID == req.session.session_id){
-            res.send(req.session);
-        } else {
-            res.redirect('/');
-        }
+    allUsers_json: function(req, res){
+        User.find({}, function(err, results){
+            res.send(JSON.stringify(results));
+        });
     },
-    show: function(req, res){
-        res.render('./../server/views/users/show', {title:'Welcome Page'});
+
+    test: function(req, res){
+        User.find({}, function(err, results){
+            res.send(results);
+        });
     },
-    edit: function(req, res){
-        res.render('./../server/views/users/edit', {title:'Welcome Page'});
-    }
+    // show: function(req, res){
+    //     res.render('./../server/views/users/show', {title:'Welcome Page'});
+    // },
+    // edit: function(req, res){
+    //     res.render('./../server/views/users/edit', {title:'Welcome Page'});
+    // }
 }

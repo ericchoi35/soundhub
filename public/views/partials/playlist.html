@@ -1,6 +1,6 @@
-<div ng-controller='Playlist'>
+<!-- <div ng-controller='Playlist'> -->
 	<div class='row'>
-		<h3 class="playlist_title">playlist1</h3>
+		<h3 class="playlist_title" ng-bind='user_playlist.playlist_name'></h3>
 		<div class="col-sm-10 col-sm-offset-1">
 			<table class="table">
 			  	<thead>
@@ -12,21 +12,9 @@
 				  	</tr>
 			  	</thead>
 			  	<tbody>
-					<tr>
-						<td><span ng-click='' class="play glyphicon glyphicon-play"></span>All About You</td>
-						<td>2Pac</td>
-						<td>30-20-2014</td>
-						<td><a href='/'><span class="trash_icon glyphicon glyphicon-trash"></span></a></td>
-					</tr>
-					<tr>
-						<td><span ng-click='' class="play glyphicon glyphicon-play"></span>All About You</td>
-						<td>2Pac</td>
-						<td>30-20-2014</td>
-						<td><a href='/'><span class="trash_icon glyphicon glyphicon-trash"></span></a></td>
-					</tr>
-					<tr>
-						<td><span ng-click='' class="play glyphicon glyphicon-play"></span>All About You</td>
-						<td>2Pac</td>
+			  		<tr ng-repeat='song in user_playlist.songs'>
+						<td><a href='' ng-click='' ng-bind='song.track'><span class="play_icon glyphicon glyphicon-play"></span></a></td>
+						<td ng-bind='song.artist'></td>
 						<td>30-20-2014</td>
 						<td><a href='/'><span class="trash_icon glyphicon glyphicon-trash"></span></a></td>
 					</tr>
@@ -34,4 +22,4 @@
 			</table>
 		</div>
 	</div>
-</div>
+<!-- </div>

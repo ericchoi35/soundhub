@@ -21,33 +21,26 @@
 			socket.emit('test', { hello: 'world' });
 		</script>
   	</head>
-  	<body id='body'>
-		<div id='container' ng-app="MusicApp" class='row'>
-			<div ng-controller='User'>
-
-				<p ng-bind='session'></p>
+  	<body id='body' ng-app='MusicApp'>
+		<div id='container' ng-controller="User" class='row'>
 				
-				<div id='header' class='row'>
-					<div id='logo' class='col-sm-3'>
-						<img src="./../images/logo.png" alt="logo">
-						<h1>SoundHub</h1>
-					</div>
-					<div id='search' class='col-sm-5'>
-						<input type="search" class="form-control" placeholder="Search">
-					</div>
-					<div id='user' class='col-sm-3 col-sm-offset-1'>
-						<a href='#/'>Eduardo</a>
-						<span class="user_icon glyphicon glyphicon-cloud"></span>
-						<div id='log_out' class='pull-right'>
-							<a href='/'>Log Out</a>
-							<span class="logout_icon glyphicon glyphicon-off"></span>
-						</div>
+			<div id='header' class='row'>
+				<div id='logo' class='col-sm-3'>
+					<img src="./../images/logo.png" alt="logo">
+					<h1>SoundHub</h1>
+				</div>
+				<div id='search' class='col-sm-5'>
+					<input type="search" class="form-control" placeholder="Search">
+				</div>
+				<div id='user' class='col-sm-3 col-sm-offset-1'>
+					<a href='#/' ng-bind="user[0].first_name"></a>
+					<span class="user_icon glyphicon glyphicon-cloud"></span>
+					<div id='log_out' class='pull-right'>
+						<a href='/'>Log Out</a>
+						<span class="logout_icon glyphicon glyphicon-off"></span>
 					</div>
 				</div>
-				
-			</div>	
-		
-		
+			</div>
 
 			<div id='nav_bar' class='col-sm-2'>
 				<nav class="navbar navbar-inverse nav-stacked navbar-left col-sm-12" role="navigation">
@@ -57,7 +50,7 @@
 					  		<a href="#/browse">Browse Music</a>
 					  	</li>
 					 	<li>
-					 		<a href=''>Play Queue</a>
+					 		<a href='#/playlist' ng-click='showCurrentPlaylist();'>Play Queue</a>
 					 	</li>
 						<li>
 					 		<a href='#/follow'>Following</a>
@@ -71,26 +64,21 @@
 					</ul>
 					<h5>Your Playlists<span class="icon glyphicon glyphicon-th-list"></span></h5>
 					<div id='playlist'>
-						<ul class="nav navbar nav-stacked">
-							<li><a href='#/playlist'>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
-							<li><a href=''>playlist1</a></li>
+						<ul class="nav navbar nav-stacked" ng-repeat="playlist in playlists">
+							<li>
+								<a href='#/playlist' ng-bind='playlist.playlist_name' ng-click="showPlaylist($index)"></a>
+							</li>
 						</ul>
 					</div>
 					<div id='create' class="input-group input-group-sm">
-					  	<input type="text" class="form-control" placeholder="Playlist name">
-					  	<button ng-click='' class='btn btn-xs btn-primary'>Add playlist</button>
+					  	<input type="text" class="form-control" placeholder="Playlist name" ng-model='playlist_name'>
+					  	<button ng-click='createPlaylist()' class='btn btn-xs btn-primary'>Add playlist</button>
 					</div>
 					
 				</nav>
 			</div>
 
 			<div id='main_content' class='col-sm-8' ng-view=''>
-				
 			</div>
 
 			<div id='follow' class='col-sm-2'>
@@ -98,40 +86,11 @@
 					<div class='col-sm-12'>
 						<h3>Who to follow</h3>
 						<div id='follow_list'>
-							<ul class='follow_name'>
+							<ul class='follow_name' ng-repeat="user in users">
 								<li>
-									<label>Rory</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
+									<label ng-bind="user.first_name"></label>
+									<a href='/' ng-click='follow(user._id)'><span class="follow_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
-								<li>
-									<label>Eric</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
-								</li>
-								<li>
-									<label>Andrew</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
-								</li>
-								<li>
-									<label>Michael</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
-								</li>
-								<li>
-									<label>Adam</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
-								</li>
-								<li>
-									<label>Evan</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
-								</li>
-								<li>
-									<label>Evan</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
-								</li>
-								<li>
-									<label>Evan</label>
-									<a href='/'><span class="trash_icon glyphicon glyphicon-transfer"></span></a>
-								</li>
-
 							</ul>
 						</div>
 					</div>
@@ -152,7 +111,8 @@
 				  <source src="./../music_files/Alphabeat - DJ (Madeon Remix).mp3" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
-			</div>			
+			</div>
+
 		</div>
   	</body>
 </html>

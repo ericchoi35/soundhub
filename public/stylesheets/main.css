@@ -47,10 +47,16 @@
 	height: 200px;
 	overflow: auto;
 }
+#playlist ul{
+	margin-bottom: 0;
+}
 .icon{
 	margin-left: 10px;
 }
-
+.follow_icon{
+	font-size: 1.3em;
+	color: white;
+}
 /*#header{
 	width: auto;
 }*/
