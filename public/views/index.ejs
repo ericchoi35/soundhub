@@ -41,6 +41,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div id='nav_bar' class='col-sm-2'>
 				<nav class="navbar navbar-inverse nav-stacked navbar-left col-sm-12" role="navigation">
 					<h5>Main<span class="icon glyphicon glyphicon-headphones"></span></h5>
@@ -49,7 +50,7 @@
 					  		<a href="#/browse">Browse Music</a>
 					  	</li>
 					 	<li>
-					 		<a href=''>Play Queue</a>
+					 		<a href='#/playlist' ng-click='showCurrentPlaylist();'>Play Queue</a>
 					 	</li>
 						<li>
 					 		<a href='#/follow'>Following</a>
@@ -65,7 +66,7 @@
 					<div id='playlist'>
 						<ul class="nav navbar nav-stacked" ng-repeat="playlist in playlists">
 							<li>
-								<a ng-bind='playlist.playlist_name' ng-click="showPlaylist($index)"></a>
+								<a href='#/playlist' ng-bind='playlist.playlist_name' ng-click="showPlaylist($index)"></a>
 							</li>
 						</ul>
 					</div>

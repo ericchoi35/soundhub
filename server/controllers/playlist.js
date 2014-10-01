@@ -14,6 +14,7 @@ module.exports = {
             }
     	})
     },
+
     allPlaylists_json: function(req, res){
     	console.log("SESSION - req.session", req.session);
         User.find({_id: req.session.user_id}, function(err, results){
@@ -24,9 +25,19 @@ module.exports = {
             {
                  res.send(JSON.stringify(results[0].playlists));
             }
-        	// console.log('RESULTS', results);
-            // res.send(JSON.stringify(results.playlists));
         });
-    }
+    },
+
+    save_playlist: function(req, res){
+    	console.log('req-body', req.body);
+    	console.log(req.body.current_playlist_index);
+    	req.session.current_playlist_index = req.body.current_playlist_index;
+    	console.log(req.session.current_playlist_index);
+    	// res.send(JSON.stringify(req.body.index));
+    },
+
+    get_playlist: function(req, res){
+    	res.send(JSON.stringify(req.session.current_playlist_index));
+    },
 }
 

@@ -1,10 +1,11 @@
 /*USER PARTIAL*/
+.playlist_div{
+	overflow: auto;
+	height: 600px;
+}
 .playlist_title {
 	margin-left: 50px;
 }
-/*.show_more{
-	text-align: center;
-}*/
 
 /*BROWSE PARTIAL*/
 .playlist_select {

@@ -41,6 +41,14 @@ module.exports = function Routes(app, io){
         playlist.create(req,res)
     });
 
+    app.get('/playlist/save_playlist', function (req,res){
+        playlist.save_playlist(req,res)
+    });
+
+    app.get('/playlist/get_playlist', function (req,res){
+        playlist.get_playlist(req,res)
+    })
+
     app.get('/playlist/allPlaylists', function (req,res){
         playlist.allPlaylists_json(req,res)
     });

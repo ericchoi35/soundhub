@@ -5,8 +5,12 @@ MusicApp.factory('SoundFactory', function($http, $window){
 	var users = [];
 	
 	var playlists = [];
+
+	var current_playlist_index = null;
 	
 	var factory = {};
+
+
 
 	factory.addNewUser = function(info, callback){ //for adding user
 		console.log(info);
@@ -43,7 +47,8 @@ MusicApp.factory('SoundFactory', function($http, $window){
 		$http.get('/playlist/allPlaylists').success(function(output){
 			
 			playlists = output;
-			callback(playlists);
+			//test
+			callback(output);
 			console.log('playlists', output);
 		})
 	}
@@ -57,6 +62,34 @@ MusicApp.factory('SoundFactory', function($http, $window){
 			playlists.push({playlist_name: info});
 			console.log('PLAYLISTS: ',playlists)
 		})
+	}
+
+	factory.getPlaylist = function(index, callback){
+
+		current_playlist_index = index;
+		console.log('CURRENT PLAYLIST INDEX', current_playlist_index);
+		// console.log('CURRENT PLAYLIST INDEX', current_playlist_index);
+
+		// $http.get('/playlist/save_playlist', current_playlist_index).success(function(data){
+			
+		// })
+			playlist = playlists[index];
+			console.log(playlist);
+			callback(playlist);
+		
+	}
+
+	factory.getCurrentPlaylist = function(callback){
+
+		playlist = playlists[current_playlist_index];
+		console.log(playlist);
+		callback(playlist);
+		// $http.get('/playlist/get_playlist').success(function(data){
+		// 	playlist = playlists[data];
+		// 	console.log(playlist);
+		// 	callback(playlist);
+
+		// })	
 	}
 
 	factory.test = function(){
