@@ -17,6 +17,7 @@ MusicApp.controller('Login', function($scope, $window, SoundFactory){
 })
 
 MusicApp.controller('User', function($scope, $window, SoundFactory){
+	// $scope.myplaylist = '';
 	SoundFactory.getUserData(function(data){
 		$scope.user = data;
 		console.log('$scope.user', $scope.user);
@@ -31,6 +32,11 @@ MusicApp.controller('User', function($scope, $window, SoundFactory){
 		$scope.playlists = data;
 		console.log('$scope.playlists,', $scope.playlists);
 	});
+
+	SoundFactory.getAllSongs(function(data){
+		$scope.songs = data;
+		console.log('$scope.songs', $scope.songs)
+	})
 
 	$scope.createPlaylist = function(){
 		SoundFactory.addPlaylist($scope.playlist_name);
@@ -48,6 +54,20 @@ MusicApp.controller('User', function($scope, $window, SoundFactory){
 		})
 	}
 
+	$scope.deletePlaylist = function(info){
+		SoundFactory.removePlaylist(info);
+	}
+
+	$scope.deleteSong = function(index,song,playlist){
+		SoundFactory.removeSong(index,song,playlist);
+	}
+
+	$scope.addSong = function(){
+		// SoundFactory.addSongToPlaylist($scope.addsong);
+		// console.log('$information', song)
+		console.log('$myplaylist', $scope.myplaylist);
+		// console.log('$information', playlist_name)
+	}
 })	
 
 MusicApp.controller('Playlist', function($scope, SoundFactory){

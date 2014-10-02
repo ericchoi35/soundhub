@@ -35,6 +35,10 @@ module.exports = function Routes(app, io){
         users.allUsers_json(req,res)
     });
 
+    app.get('/users/all_songs', function (req,res){
+        users.all_songs(req,res)
+    })
+
     // start of playlist controller
     // create playlist
     app.post('/playlist/create', function (req,res){
@@ -52,6 +56,14 @@ module.exports = function Routes(app, io){
     app.get('/playlist/allPlaylists', function (req,res){
         playlist.allPlaylists_json(req,res)
     });
+
+    app.post('/playlist/delete', function (req,res){
+        playlist.destroy(req,res);
+    })
+
+    app.post('/playlist/delete_song', function (req,res){
+        playlist.destroy_song(req,res);
+    })
 
     app.get('/test', function (req,res){
         users.test(req,res)

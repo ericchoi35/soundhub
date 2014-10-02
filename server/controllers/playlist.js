@@ -14,6 +14,18 @@ module.exports = {
             }
     	})
     },
+    // create: function(req, res){
+    // 	console.log(req.body);
+    // 	User.update({'_id': req.body._id},{$push: {playlists: {playlist_name: req.body.playlist_name}}}, function(err,numbersAffected){
+    //         if(err){
+    //             res.send(JSON.stringify(err));
+    //         }
+    //         else
+    //         {
+    //             res.send(JSON.stringify(numbersAffected));
+    //         }
+    // 	})
+    // },
 
     allPlaylists_json: function(req, res){
     	console.log("SESSION - req.session", req.session);
@@ -39,5 +51,31 @@ module.exports = {
     get_playlist: function(req, res){
     	res.send(JSON.stringify(req.session.current_playlist_index));
     },
+
+    destroy: function(req,res){
+    	console.log("FROM DELETE: ",req.body);
+    	User.update({_id: req.body._id}, {$pull: {playlists: {playlist_name: req.body.playlist_name}}}, function(err, numbersAffected){
+    		if(err){
+    			res.send(JSON.stringify(err));
+    		} else {
+    			res.send(JSON.stringify(numbersAffected));
+    		}
+    	})
+    },
+
+    destroy_song: function(req,res){
+    	console.log("FROM DELETE SONG", req.body);
+    	User.update({_id: req.body._id, 'playlists.playlist_name': req.body.playlist_name}, {$pull: {'playlists.$.songs': {track: req.body.track, artist: req.body.artist}}}, function(err, numbersAffected){
+    		if(err){
+    			res.send(JSON.stringify(err));
+    		} else {
+    			res.send(JSON.stringify(numbersAffected));
+    		}
+    	})
+    },
+    //to delete playlist
+    // db.users.update({'first_name': 'Eric'}, {$pull: {playlists: {playlist_name: 'hip-hop'}}})
+    //to delete song from specific playlist
+     // db.users.update({'first_name': 'Eric', 'playlists.playlist_name':'pop'}, {$pull: {'playlists.$.songs': {track: 'mama', artist: 'pac'}}})
 }
 

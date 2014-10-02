@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var User = mongoose.model('User');
+var Song = mongoose.model('Song');
 
 module.exports = {
     index: function(req, res){
@@ -56,6 +57,12 @@ module.exports = {
         User.find({}, function(err, results){
             res.send(JSON.stringify(results));
         });
+    },
+
+    all_songs: function(req,res){
+        Song.find({}, function(err, results){
+            res.send(JSON.stringify(results));
+        })
     },
 
     test: function(req, res){
