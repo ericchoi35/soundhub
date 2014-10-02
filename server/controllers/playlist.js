@@ -14,18 +14,6 @@ module.exports = {
             }
     	})
     },
-    // create: function(req, res){
-    // 	console.log(req.body);
-    // 	User.update({'_id': req.body._id},{$push: {playlists: {playlist_name: req.body.playlist_name}}}, function(err,numbersAffected){
-    //         if(err){
-    //             res.send(JSON.stringify(err));
-    //         }
-    //         else
-    //         {
-    //             res.send(JSON.stringify(numbersAffected));
-    //         }
-    // 	})
-    // },
 
     allPlaylists_json: function(req, res){
     	console.log("SESSION - req.session", req.session);
@@ -53,7 +41,6 @@ module.exports = {
     },
 
     destroy: function(req,res){
-    	console.log("FROM DELETE: ",req.body);
     	User.update({_id: req.body._id}, {$pull: {playlists: {playlist_name: req.body.playlist_name}}}, function(err, numbersAffected){
     		if(err){
     			res.send(JSON.stringify(err));
@@ -61,6 +48,18 @@ module.exports = {
     			res.send(JSON.stringify(numbersAffected));
     		}
     	})
+    },
+
+    add_song: function(req,res){
+        console.log("FROM ADD SONG:", req.body);
+        User.update({_id: req.session.user_id, 'playlists.playlist_name':req.body.playlist_name}, {$push: {'playlists.$.songs': {track: req.body.track, artist: req.body.artist}}}, function(err, numbersAffected){
+            if(err){
+                res.send(JSON.stringify(err));
+            } else {
+                res.send(JSON.stringify(numbersAffected));
+            }
+        })
+    // users.update({'first_name': 'Eduardo', 'playlists.playlist_name':'Hip Hop'}, {$push: {'playlists.$.songs': {track: 'Stan', artist: 'Eminem'}}})
     },
 
     destroy_song: function(req,res){

@@ -62,11 +62,12 @@ MusicApp.controller('User', function($scope, $window, SoundFactory){
 		SoundFactory.removeSong(index,song,playlist);
 	}
 
-	$scope.addSong = function(){
-		// SoundFactory.addSongToPlaylist($scope.addsong);
-		// console.log('$information', song)
-		console.log('$myplaylist', $scope.myplaylist);
-		// console.log('$information', playlist_name)
+	$scope.addSong = function(song, play_index){
+		var song_info = {
+			song_info: song,
+			playlist_index: play_index
+		};
+		SoundFactory.addSongToPlaylist(song_info);
 	}
 })	
 

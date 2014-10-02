@@ -65,6 +65,10 @@ module.exports = function Routes(app, io){
         playlist.destroy_song(req,res);
     })
 
+    app.post('/playlist/add_song',function (req,res){
+        playlist.add_song(req,res);
+    })
+
     app.get('/test', function (req,res){
         users.test(req,res)
     });

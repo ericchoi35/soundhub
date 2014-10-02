@@ -1,16 +1,9 @@
 MusicApp.factory('SoundFactory', function($http, $window){
-	
 	var user = [];
-	
 	var users = [];
-	
 	var playlists = [];
-
 	var current_playlist_index = null;
-	
 	var factory = {};
-
-
 
 	factory.addNewUser = function(info, callback){ //for adding user
 		console.log(info);
@@ -126,7 +119,19 @@ MusicApp.factory('SoundFactory', function($http, $window){
 
 	factory.addSongToPlaylist = function(info){
 		console.log('INFO', info);
-		// $http.post
+		var data = {
+			track: info.song_info.track,
+			artist: info.song_info.artist,
+			playlist_name: playlists[info.playlist_index].playlist_name
+		}
+		console.log(data);
+		$http.post('/playlist/add_song', data).success(function(data){
+			playlists[info.playlist_index].songs.push({
+				track: info.song_info.track,
+				artist: info.song_info.artist
+			})
+			console.log(playlists);
+		})
 	}
 
 	factory.test = function(){
