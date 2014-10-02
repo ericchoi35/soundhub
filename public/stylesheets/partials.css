@@ -40,3 +40,17 @@
 	color: white;
 	margin-right: 10px;
 }
+.this_playlist{
+	margin-left: 50px;
+}
+#current_playlist{
+	margin-top: 40px;
+}
+#current_playlist h3{
+	display: inline;
+	margin-left: 50px;
+}
+.delete_playlist{
+	display:inline-block;
+	margin-right: 105px;
+}

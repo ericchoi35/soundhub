@@ -45,9 +45,12 @@ MusicApp.factory('SoundFactory', function($http, $window){
 
 	factory.getAllPlaylists = function(callback){
 		$http.get('/playlist/allPlaylists').success(function(output){
-			
-			playlists = output;
-			//test
+			if(output == ''){
+				output = [];
+				playlists = output;
+			} else{
+				playlists = output;
+			}
 			callback(output);
 			console.log('playlists', output);
 		})
@@ -60,7 +63,6 @@ MusicApp.factory('SoundFactory', function($http, $window){
 		}
 		$http.post('/playlist/create', user_data).success(function(data){
 			playlists.push({playlist_name: info});
-			console.log('PLAYLISTS: ',playlists)
 		})
 	}
 
@@ -79,17 +81,52 @@ MusicApp.factory('SoundFactory', function($http, $window){
 		
 	}
 
-	factory.getCurrentPlaylist = function(callback){
+	factory.removePlaylist = function(info){
+		var playlist = {
+			_id: user[0]._id,
+			playlist_name: info
+		}
+		console.log("FROM REMOVE", playlist, user);
+		$http.post('/playlist/delete', playlist).success(function(data){
+			console.log(data);
+			playlists[current_playlist_index].songs
+		})
+	}
 
-		playlist = playlists[current_playlist_index];
-		console.log(playlist);
-		callback(playlist);
-		// $http.get('/playlist/get_playlist').success(function(data){
-		// 	playlist = playlists[data];
-		// 	console.log(playlist);
-		// 	callback(playlist);
+	// factory.getCurrentPlaylist = function(callback){
 
-		// })	
+	// 	playlist = playlists[current_playlist_index];
+	// 	console.log(playlist);
+	// 	callback(playlist);
+	// 	$http.get('/playlist/get_playlist').success(function(data){
+	// 		playlist = playlists[data];
+	// 		console.log(playlist);
+	// 		callback(playlist);
+
+	// 	})	
+	// }
+
+	factory.removeSong = function(index, song, playlist){
+		var info = {
+			_id: user[0]._id,
+			playlist_name: playlist,
+			track: song.track,
+			artist: song.artist
+		};
+		$http.post('/playlist/delete_song', info).success(function(data){
+			playlists[current_playlist_index].songs.splice(index,1);
+		})
+	}
+
+	factory.getAllSongs = function(callback){
+		$http.get('/users/all_songs').success(function(data){
+			callback(data);
+		})
+	}
+
+	factory.addSongToPlaylist = function(info){
+		console.log('INFO', info);
+		// $http.post
 	}
 
 	factory.test = function(){
