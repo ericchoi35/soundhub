@@ -30,7 +30,7 @@
 					<h1>SoundHub</h1>
 				</div>
 				<div id='search' class='col-sm-5'>
-					<input type="search" class="form-control" placeholder="Search">
+					<input ng-model='filter_name' type="search" class="form-control" placeholder="Search">
 				</div>
 				<div id='user' class='col-sm-3 col-sm-offset-1'>
 					<a href='#/' ng-bind="user[0].first_name"></a>
@@ -86,10 +86,10 @@
 					<div class='col-sm-12'>
 						<h3>Who to follow</h3>
 						<div id='follow_list'>
-							<ul class='follow_name' ng-repeat="user in users">
-								<li>
-									<label ng-bind="user.first_name"></label>
-									<a href='/' ng-click='follow(user._id)'><span class="follow_icon glyphicon glyphicon-transfer"></span></a>
+							<ul class='follow_name' ng-repeat="other_user in users">
+								<li ng-if="user[0].first_name != other_user.first_name">
+									<label ng-bind="other_user.first_name"></label>
+									<a href='' ng-click='follow(other_user)'><span class="follow_icon glyphicon glyphicon-transfer"></span></a>
 								</li>
 							</ul>
 						</div>
@@ -100,15 +100,18 @@
 						<h3>What's happening</h3>
 						<div id='news_feed'>
 							<p>Eduardo just listened to 'Alphabeat' by Madeon</p>
+							<p>{{song_source}}</p> 
+							<p>"./../music_files/{{song_source}}"</p> 
 						</div>
 					</div>
 				</div>				
 			</div>
 			
 			<div class='footer navbar-fixed-bottom'>
-			   <audio controls>
+			   <audio id="audio-tag" controls="controls" preload="none">
 				  <!-- <source src="horse.ogg" type="audio/ogg"> -->
-				  <source src="./../music_files/Alphabeat - DJ (Madeon Remix).mp3" type="audio/mpeg">
+				  <source ng-src="" type="audio/mpeg"/>
+
 				Your browser does not support the audio element.
 				</audio>
 			</div>

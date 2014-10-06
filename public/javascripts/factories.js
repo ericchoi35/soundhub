@@ -1,4 +1,4 @@
-MusicApp.factory('SoundFactory', function($http, $window){
+MusicApp.factory('SoundFactory', function($http, $window, $document){
 	var user = [];
 	var users = [];
 	var playlists = [];
@@ -83,21 +83,23 @@ MusicApp.factory('SoundFactory', function($http, $window){
 		$http.post('/playlist/delete', playlist).success(function(data){
 			console.log(data);
 			playlists[current_playlist_index].songs
+			playlists.splice([current_playlist_index],1);
 		})
+
 	}
 
-	// factory.getCurrentPlaylist = function(callback){
+	factory.getCurrentPlaylist = function(callback){
 
-	// 	playlist = playlists[current_playlist_index];
-	// 	console.log(playlist);
-	// 	callback(playlist);
-	// 	$http.get('/playlist/get_playlist').success(function(data){
-	// 		playlist = playlists[data];
-	// 		console.log(playlist);
-	// 		callback(playlist);
+		playlist = playlists[current_playlist_index];
+		console.log(playlist);
+		callback(playlist);
+		// $http.get('/playlist/get_playlist').success(function(data){
+		// 	playlist = playlists[data];
+		// 	console.log(playlist);
+		// 	callback(playlist);
 
-	// 	})	
-	// }
+		// })	
+	}
 
 	factory.removeSong = function(index, song, playlist){
 		var info = {
@@ -119,18 +121,26 @@ MusicApp.factory('SoundFactory', function($http, $window){
 
 	factory.addSongToPlaylist = function(info){
 		console.log('INFO', info);
+		var new_date = new Date();
 		var data = {
 			track: info.song_info.track,
 			artist: info.song_info.artist,
-			playlist_name: playlists[info.playlist_index].playlist_name
+			playlist_name: playlists[info.playlist_index].playlist_name,
+			file_source: info.song_info.file_source,
+			date: new_date
 		}
-		console.log(data);
+
 		$http.post('/playlist/add_song', data).success(function(data){
+			if(playlists[info.playlist_index].songs == undefined){
+				playlists[info.playlist_index].songs = [];
+			} 
 			playlists[info.playlist_index].songs.push({
 				track: info.song_info.track,
-				artist: info.song_info.artist
+				artist: info.song_info.artist,
+				file_source: info.song_info.file_source,
+				date: new_date
 			})
-			console.log(playlists);
+			console.log('playlists---', playlists);
 		})
 	}
 
@@ -139,6 +149,14 @@ MusicApp.factory('SoundFactory', function($http, $window){
 			data
 		})
 	}
+
+	factory.play = function(source){
+		var audioElement = $document[0].getElementById("audio-tag");
+		var music_source = './../music_files/' + source;
+		audioElement.src = music_source;
+		audioElement.play();
+	}
+
 	return factory;
 });
 

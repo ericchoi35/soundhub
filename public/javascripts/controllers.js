@@ -1,4 +1,4 @@
-MusicApp.controller('Login', function($scope, $window, SoundFactory){
+MusicApp.controller('Login', function( $document, $scope, $window, SoundFactory){
 	$scope.registerUser = function(){
 		SoundFactory.addNewUser($scope.register, function(data){
 			if(typeof(data) == 'object'){
@@ -39,7 +39,9 @@ MusicApp.controller('User', function($scope, $window, SoundFactory){
 	})
 
 	$scope.createPlaylist = function(){
-		SoundFactory.addPlaylist($scope.playlist_name);
+		if($scope.playlist_name){
+			SoundFactory.addPlaylist($scope.playlist_name);
+		}
 	}
 	$scope.showPlaylist = function(index){
 		SoundFactory.getPlaylist(index, function(data){
@@ -68,6 +70,15 @@ MusicApp.controller('User', function($scope, $window, SoundFactory){
 			playlist_index: play_index
 		};
 		SoundFactory.addSongToPlaylist(song_info);
+	}
+
+	$scope.playSong = function(source){
+		console.log('source', source);
+		$scope.song_source = source;
+		SoundFactory.play(source);
+	}
+	$scope.follow = function(user){
+		console.log("FOLLOW USER:", user);
 	}
 })	
 

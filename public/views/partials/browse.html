@@ -11,8 +11,8 @@
 			  	</tr>
 		  	</thead>
 		  	<tbody>
-				<tr ng-repeat='song in songs'>
-					<td><a href=''><span class="play_icon glyphicon glyphicon-play"></span></a></td>
+				<tr ng-repeat='song in songs | filter: filter_name'>
+					<td><a href='' ng-click="playSong(song.file_source)"><span class="glyphicon glyphicon-play"></span></a></td>
 					<td><p ng-bind='song.track'></p></td>
 					<td><p ng-bind='song.artist'></p></td>
 					<td>

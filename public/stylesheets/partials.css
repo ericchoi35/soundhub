@@ -22,7 +22,10 @@
 	height: 34;
 }
 .play_icon{
-	margin-right: 10px;
+	margin-right: -10px;
+}
+.play_icon2{
+	margin-right: -30px;
 }
 .add_icon{
 	font-size: 1.3em;

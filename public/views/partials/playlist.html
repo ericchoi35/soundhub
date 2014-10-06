@@ -6,6 +6,7 @@
 			<table class="table">
 			  	<thead>
 				  	<tr>
+				  		<th></th>
 				  		<th>Track</th>
 				  		<th>Artist</th>
 				  		<th>Date Added</th>
@@ -13,10 +14,11 @@
 				  	</tr>
 			  	</thead>
 			  	<tbody>
-			  		<tr ng-repeat='song in user_playlist.songs track by $index'>
-						<td><a href='' ng-click='' ng-bind='song.track'><span class="play_icon glyphicon glyphicon-play"></span></a></td>
+			  		<tr ng-repeat='song in user_playlist.songs | filter: filter_name' >
+			  			<td><a href='' ng-click='playSong(song.file_source)'><span class="play_icon glyphicon glyphicon-play"></span></a></td>
+						<td><p ng-click='' ng-bind='song.track'></p></td>
 						<td ng-bind='song.artist'></td>
-						<td>30-20-2014</td>
+						<td ng-bind="song.date | date: 'MMMM d, y'"></td>
 						<td><a href='' ng-click='deleteSong($index, song,user_playlist.playlist_name)'><span class="trash_icon glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 			  	</tbody>

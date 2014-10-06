@@ -52,7 +52,7 @@ module.exports = {
 
     add_song: function(req,res){
         console.log("FROM ADD SONG:", req.body);
-        User.update({_id: req.session.user_id, 'playlists.playlist_name':req.body.playlist_name}, {$push: {'playlists.$.songs': {track: req.body.track, artist: req.body.artist}}}, function(err, numbersAffected){
+        User.update({_id: req.session.user_id, 'playlists.playlist_name':req.body.playlist_name}, {$push: {'playlists.$.songs': {track: req.body.track, artist: req.body.artist, file_source: req.body.file_source, date: req.body.date}}}, function(err, numbersAffected){
             if(err){
                 res.send(JSON.stringify(err));
             } else {

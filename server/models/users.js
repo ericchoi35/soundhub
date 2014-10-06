@@ -5,6 +5,7 @@ var UserSchema = new mongoose.Schema({
   	email: String,
   	password: String,
   	playlists: Object,
+  	following: Object,
   	date: { type: Date, default: Date.now },
   	hidden: Boolean,
 });
